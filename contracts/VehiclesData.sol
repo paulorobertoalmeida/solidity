@@ -1,22 +1,29 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "./VehicleRepo.sol";
 
-// Mapping = Hash lockup tables for keys => value pais: mapping(key_type => value_type)Name
-library VehicleData{
-    
-    struct Set {
-        uint256[] _repos;
-        
-    mapping(uint256 => uint256) _repos;    
-    
+contract GetVehicleData {
+    address owner;
+   
+    mapping (address => address) _repos;
+   
+    mapping(address => Vehicle) public positions;
+    struct Vehicle {
+        uint16 id;
+        uint256 lat;
+        uint256 lon;
     }
-    
-    address public _repos;
-    
-    function CreateRepository() address { 
-        require (_repos(msg.sender)==0);
-    if (new VehicleRepo(msg.sender)) {
-            set._repos[msg.sender] = r; // ese r es (v,r,s) osea, componente de la asignatura?            return true;
-        }
+   
+    constructor() public {
+        owner = msg.sender;
+    }
+
+
+    function setVehiclePosition(uint16 id, uint256 lat, uint256 lon) public
+    {
+        address direction = msg.sender;
+        positions[direction].id = id;
+        positions[direction].lat = lat;
+        positions[direction].lon = lon;
+       
     }
 }
